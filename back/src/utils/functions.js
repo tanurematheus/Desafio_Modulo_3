@@ -4,6 +4,9 @@ function getArray(req) {
         case '/usuario':
             array = ['nome', 'email', 'senha'];
             break;
+        case '/login':
+            array = ['email', 'senha'];
+            break;
         default:
             break;
     }
