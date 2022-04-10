@@ -39,7 +39,25 @@ async function validateEmail(req, res, next) {
     next();
 }
 
+async function validateEmailLogin(req, res, next) {
+    const { email } = req.body;
+    try {
+        const queryConsutaEmail = `SELECT * FROM usuarios WHERE email = $1`;
+        const { rowCount: quantidadeUsuarios } = await conexao.query(queryConsutaEmail, [email]);
+
+        if (quantidadeUsuarios == 0) {
+            return res.status(404).json({
+                mensagem: 'Usuário e/ou senha inválido(s).'
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    next();
+}
+
 module.exports = {
     validateBody,
-    validateEmail
+    validateEmail,
+    validateEmailLogin
 };
