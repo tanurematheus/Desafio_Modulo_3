@@ -1,5 +1,7 @@
 const { getArray } = require("../utils/functions");
 const conexao = require('../../db/conexao');
+const jwtSecret = require('../utils/jwt_secret');
+const jwt = require('jsonwebtoken');
 
 function validateBody(req, res, next) {
     const array = getArray(req);
@@ -56,8 +58,34 @@ async function validateEmailLogin(req, res, next) {
     next();
 }
 
+async function validateLogin(req, res, next) {
+    const { authorization } = req.headers;
+    if (!authorization) {
+        return res.status(404).json({
+            mensagem: 'Para acessar este recurso um token de autenticação válido deve ser enviado.'
+        });
+    }
+    try {
+        const token = authorization.replace('Bearer', '').trim();
+        const { id } = jwt.verify(token, jwtSecret);
+        const queryConsultaUsuario = `SELECT * FROM usuarios WHERE id = $1`;
+        const { rows, rowCount } = await conexao.query(queryConsultaUsuario, [id]);
+        if (!rowCount) {
+            return res.status(404).json({
+                mensagem: 'Usuário não encontrado.'
+            });
+        }
+        const { senha, ...usuario } = rows[0];
+        req.usuario = usuario;
+        next();
+    } catch (error) {
+        return res.status(401).json(error.mensagem);
+    }
+}
+
 module.exports = {
     validateBody,
     validateEmail,
-    validateEmailLogin
+    validateEmailLogin,
+    validateLogin
 };
