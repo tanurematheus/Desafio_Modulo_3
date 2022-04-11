@@ -79,7 +79,7 @@ async function validateLogin(req, res, next) {
         req.usuario = usuario;
         next();
     } catch (error) {
-        return res.status(400).json(error.mensagem);
+        return res.status(401).json(error.mensagem);
     }
 }
 
