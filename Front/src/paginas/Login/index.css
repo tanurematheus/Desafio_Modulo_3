@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.paginaInicial{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-image: url("../../assets/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
