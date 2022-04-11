@@ -58,6 +58,27 @@ async function validateEmailLogin(req, res, next) {
     next();
 }
 
+async function validateEmailAtualizar(req, res, next) {
+    const { email } = req.body;
+    const { id } = req.usuario;
+
+    try {
+        const queryConsultaEmail = `SELECT * FROM usuarios WHERE email = $1`;
+        const { rows, rowCount: quantidadeUsuarios } = await conexao.query(queryConsultaEmail, [email]);
+
+        if (quantidadeUsuarios > 0) {
+            if (rows[0].id != id) {
+                return res.status(400).json({
+                    mensagem: 'Já existe usuário cadastrado com o e-mail informado.'
+                });
+            }
+        }
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    next();
+}
+
 async function validateLogin(req, res, next) {
     const { authorization } = req.headers;
     if (!authorization) {
@@ -87,5 +108,6 @@ module.exports = {
     validateBody,
     validateEmail,
     validateEmailLogin,
-    validateLogin
+    validateLogin,
+    validateEmailAtualizar
 };
