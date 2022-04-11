@@ -88,8 +88,6 @@ async function atualizarUsuario(req, res) {
     }
 }
 
-
-
 module.exports = {
     cadastrarUsuario,
     detalharUsuario,
