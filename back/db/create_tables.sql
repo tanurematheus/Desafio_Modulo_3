@@ -18,9 +18,9 @@ drop table if exists transacoes cascade;
 create table transacoes(
   id serial primary key,
   categoria_id int not null references categorias(id),
-  usuarios_id int not null references usuarios(id),
+  usuario_id int not null references usuarios(id),
   valor bigint not null,
   data timestamp not null,  
-  descricao text,
+  descricao text not null,
   tipo varchar(7) not null
 ); 
