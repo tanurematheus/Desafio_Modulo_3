@@ -26,6 +26,35 @@ async function cadastrarTransacao(req, res) {
     }
 }
 
+async function detalharTransacao(req, res) {
+    const { id } = req.params;
+    const { id: idUsuario } = req.usuario;
+    try {
+        const queryDetalharTransacao = `SELECT transacoes.id, transacoes.tipo, transacoes.descricao, transacoes.valor, transacoes.data, transacoes.usuario_id, transacoes.categoria_id, categorias.descricao as categoria_nome FROM transacoes JOIN categorias ON transacoes.categoria_id = categorias.id WHERE transacoes.id = $1`;
+        const { rows: transacao } = await conexao.query(queryDetalharTransacao, [id]);
+        if (transacao.length > 0) {
+            if (transacao[0].usuario_id == idUsuario) {
+                return res.status(200).json(
+                    transacao[0]
+                );
+            } else {
+                return res.status(403).json({
+                    mensagem: 'Você não tem permissão para acessar essa transação'
+                });
+            }
+        } else {
+            return res.status(404).json({
+                mensagem: 'Transação não encontrada'
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            erro: error.message
+        });
+    }
+}
+
 module.exports = {
-    cadastrarTransacao
+    cadastrarTransacao,
+    detalharTransacao
 }
