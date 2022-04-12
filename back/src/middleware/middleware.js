@@ -16,7 +16,7 @@ function validateBody(req, res, next) {
         if (!keys.includes(item)) {
             return res.status(400).json({ mensagem: `O campo ${item} é obrigatório` });
         }
-        if (body[item].trim() == '') {
+        if (body[item].toString().trim() == '') {
             return res.status(400).json({ mensagem: `O campo ${item} não pode ser vazio` });
         }
     }
@@ -104,10 +104,28 @@ async function validateLogin(req, res, next) {
     }
 }
 
+async function validateCategoria(req, res, next) {
+    const { categoria_id } = req.body;
+    try {
+        const queryConsultaCategoria = `SELECT * FROM categorias WHERE id = $1`;
+        const { rowCount: quantidadeCategorias } = await conexao.query(queryConsultaCategoria, [categoria_id]);
+
+        if (quantidadeCategorias == 0) {
+            return res.status(400).json({
+                mensagem: 'Categoria não encontrada.'
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    next();
+}
+
 module.exports = {
     validateBody,
     validateEmail,
     validateEmailLogin,
     validateLogin,
-    validateEmailAtualizar
+    validateEmailAtualizar,
+    validateCategoria
 };

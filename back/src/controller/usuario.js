@@ -74,8 +74,9 @@ async function atualizarUsuario(req, res) {
     const { nome, email, senha } = req.body;
     const { id } = req.usuario;
     try {
+        const senhaCriptografada = await bcrypt.hash(senha, 10);
         const query = `UPDATE usuarios SET nome = $1, email = $2, senha = $3 WHERE id = $4`;
-        const params = [nome, email, senha, id];
+        const params = [nome, email, senhaCriptografada, id];
         const usuarioAtualizado = await conexao.query(query, params);
         if (usuarioAtualizado.rowCount === 0) {
             return res.status(400).json({

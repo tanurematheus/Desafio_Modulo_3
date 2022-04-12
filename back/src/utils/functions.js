@@ -7,6 +7,8 @@ function getArray(req) {
         case '/login':
             array = ['email', 'senha'];
             break;
+        case '/transacao':
+            array = ['descricao', 'valor', 'data', 'categoria_id', 'tipo'];
         default:
             break;
     }
