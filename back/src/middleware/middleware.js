@@ -16,7 +16,7 @@ function validateBody(req, res, next) {
         if (!keys.includes(item)) {
             return res.status(400).json({ mensagem: `O campo ${item} é obrigatório` });
         }
-        if (body[item].trim() == '') {
+        if (body[item].toString().trim() == '') {
             return res.status(400).json({ mensagem: `O campo ${item} não pode ser vazio` });
         }
     }
@@ -58,6 +58,27 @@ async function validateEmailLogin(req, res, next) {
     next();
 }
 
+async function validateEmailAtualizar(req, res, next) {
+    const { email } = req.body;
+    const { id } = req.usuario;
+
+    try {
+        const queryConsultaEmail = `SELECT * FROM usuarios WHERE email = $1`;
+        const { rows, rowCount: quantidadeUsuarios } = await conexao.query(queryConsultaEmail, [email]);
+
+        if (quantidadeUsuarios > 0) {
+            if (rows[0].id != id) {
+                return res.status(400).json({
+                    mensagem: 'Já existe usuário cadastrado com o e-mail informado.'
+                });
+            }
+        }
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    next();
+}
+
 async function validateLogin(req, res, next) {
     const { authorization } = req.headers;
     if (!authorization) {
@@ -83,9 +104,28 @@ async function validateLogin(req, res, next) {
     }
 }
 
+async function validateCategoria(req, res, next) {
+    const { categoria_id } = req.body;
+    try {
+        const queryConsultaCategoria = `SELECT * FROM categorias WHERE id = $1`;
+        const { rowCount: quantidadeCategorias } = await conexao.query(queryConsultaCategoria, [categoria_id]);
+
+        if (quantidadeCategorias == 0) {
+            return res.status(400).json({
+                mensagem: 'Categoria não encontrada.'
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+    next();
+}
+
 module.exports = {
     validateBody,
     validateEmail,
     validateEmailLogin,
-    validateLogin
+    validateLogin,
+    validateEmailAtualizar,
+    validateCategoria
 };
