@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const rotas_login = require('./routes/rotas_login');
 const rotas_transacao = require('./routes/rotas_transacao');
 const rotas_usuario = require('./routes/rotas_usuario');
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
