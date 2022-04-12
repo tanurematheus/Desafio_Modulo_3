@@ -26,6 +26,27 @@ async function cadastrarTransacao(req, res) {
     }
 }
 
+async function listarTransacoes(req, res) {
+    const { id } = req.usuario;
+    try {
+        const queryListarTransacoes = `SELECT transacoes.id, transacoes.tipo, transacoes.descricao, transacoes.valor, transacoes.data, transacoes.usuario_id, transacoes.categoria_id, categorias.descricao as categoria_nome FROM transacoes JOIN categorias ON transacoes.categoria_id = categorias.id WHERE transacoes.usuario_id = $1 ORDER BY transacoes.id`;
+        const { rows: transacoes } = await conexao.query(queryListarTransacoes, [id]);
+        if (transacoes.length > 0) {
+            return res.status(200).json(
+                transacoes
+            );
+        } else {
+            return res.status(200).json(
+                []
+            );
+        }
+    } catch (error) {
+        return res.status(500).json({
+            erro: error.message
+        });
+    }
+}
+
 async function detalharTransacao(req, res) {
     const { id } = req.params;
     const { id: idUsuario } = req.usuario;
@@ -56,5 +77,6 @@ async function detalharTransacao(req, res) {
 
 module.exports = {
     cadastrarTransacao,
-    detalharTransacao
+    detalharTransacao,
+    listarTransacoes
 }
