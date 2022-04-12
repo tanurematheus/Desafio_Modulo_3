@@ -1,9 +1,8 @@
 import { useState, React } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
-import logo from '../../assets/logo.svg'
-
-
-
+import logo from '../../assets/logo.svg';
+import api from '../../services/api'
 
 
 function App() {
@@ -13,22 +12,22 @@ function App() {
   const [confirmarSenha, setConfirmarSenha] = useState('')
   const [error, setError] = useState('')
 
-  function submeterFormulario(evento){
+  async function submeterFormulario(evento){
     evento.preventDefault();
 
-    setError('');
+   try{
+     if (!nome || !email || !senha || !confirmarSenha) {
+       console.log("funcionaaa!")
+       return;
+     }
+    const resposta = await api.post('usuario', {
+      nome, email, senha, confirmarSenha
+    });
+    console.log(resposta);
 
-    if (!nome) {
-      return;
-    }
+   }catch(error){
 
-    if (!email) {
-      return;
-    }
-
-    if (!senha) {
-      return;
-    }
+   }
   }
 
   return (
@@ -38,46 +37,51 @@ function App() {
       <h2>Dindin</h2>
 
       </div>
-      
-      <div className="cadastro">
-        <h1>Cadastre-se</h1>
-        <form onSubmit={submeterFormulario}>
+       <div className='centralizar'>
+        <div className="cadastro">
+          <h1>Cadastre-se</h1>
+          <form onSubmit={submeterFormulario}>
 
-          <label>Nome</label>
-          <input
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-          />
+            <label>Nome</label>
+            <input
+              type="text"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
 
-          <label>E-mail</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+            <label>E-mail</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-          <label>Senha</label>
-          <input
-            type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
+            <label>Senha</label>
+            <input
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
 
-          <label>Confirmação de senha</label>
-          <input
-            type="password"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
-          />
+            <label>Confirmação de senha</label>
+            <input
+              type="password"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+            />
 
-          <button type="submit">
-            Cadastrar
-          </button>
-          <a href=''>Já tem cadastro? Clique aqui!</a>
+            <button
+              type="submit"
+              onClick={(e) => submeterFormulario(e)}
+            >
+              Cadastrar
+            </button>
+            <Link to='/Login'>Já tem cadastro? Clique aqui!</Link>
 
-        </form>
-      </div>
+          </form>
+
+        </div>
+       </div>
     </div>
   );
 }

@@ -7,32 +7,29 @@
 }
 
 .telaInicial {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 100vh;
 
     background-image: url("../../assets/background.png");
     background-repeat: no-repeat;
     background-size: cover;
-
+    
     /* Não tô conseguindo deixar a imagem no tamanho correto */
 }
 
+.centralizar{  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .logotipo {
-
-    position: fixed;
-    left: 100px;
-    top: 41px;
-
-    width: 169px;
     height: 45px;
 
+    padding: 40px 100px;
+
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 
 
@@ -56,6 +53,8 @@
     width: 513px;
     height: 781px;
 
+    margin-bottom: 95px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,9 +66,7 @@
 
 }
 
-h1 {
-    /* margin-top: 61px; */
-    
+h1 { 
     font-weight: 500;
     font-size: 28px;
     line-height: 33px;
@@ -85,9 +82,9 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* align-items: center; */
-}
 
+    
+}
 label{
     font-weight: 400;
     font-size: 18px;
@@ -123,11 +120,13 @@ button {
 
     background: #7978D9;
     border-radius: 5px;
+    border-style: none;
 
     color: #FFFFFF;
+
 }
 
-a {
+ .cadastro form a{
     width: 215px;
     height: 17px;
 
@@ -136,9 +135,11 @@ a {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
-    
+
     text-align: center;
     text-decoration: none;
+
+    align-self: center;
     
     color: #7B61FF;
 }

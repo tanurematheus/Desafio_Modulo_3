@@ -1,19 +1,27 @@
 import { useState, React } from 'react';
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.svg';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 
 function Login(){
 
+    const navigate = useNavigate()
+
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     return(
-        <div className='paginaIncial'>
-            <img src={logo} />
+        <div className='paginaInicial'>
+            <div className='cabecalho'>
+                <img src={logo} />
+                <h1>Dindin</h1>
+            </div>
             <div className='boxTexto'>
-                <h1>Controle suas finanças, sem planilha chata.</h1>
-                <h2>Organizar as suas finanças nunca foi tão fácil, com o DINDIN, você tem tudo num único lugar e em um clique de distância.</h2>
-                <button>Cadastre-se</button>
+                <h1>Controle suas <span>finanças</span>, sem planilha chata.</h1>
+                <p>Organizar as suas finanças nunca foi tão fácil, com o DINDIN, você tem tudo num único lugar e em um clique de distância.</p>
+                <button onClick= {() => navigate("/cadastro")}>
+                Cadastre-se
+                </button>
             </div>
             <div className='boxLogin'>
                 <h2>Login</h2>
