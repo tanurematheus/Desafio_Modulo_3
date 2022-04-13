@@ -20,13 +20,18 @@ function App() {
        console.log("funcionaaa!")
        return;
      }
+
+     if (senha != confirmarSenha){
+       return;
+     }
     const resposta = await api.post('usuario', {
       nome, email, senha, confirmarSenha
     });
+
     console.log(resposta);
 
    }catch(error){
-
+    console.log(error)
    }
   }
 

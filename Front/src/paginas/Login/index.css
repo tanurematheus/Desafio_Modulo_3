@@ -1,47 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
-    
+
 }
 
-.paginaInicial{
-    position: fixed;
+.paginaInicial {
     width: 100vw;
     height: 100vh;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+
+    padding-top: 41px;
+
     background-image: url("../../assets/background.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .cabecalho {
-    position: fixed;
     width: 169px;
     height: 45px;
-    left: 100px;
-    top: 41px;
-    
+
+    margin-top: 41px;
+    margin-left: 100px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-}    
+}
 
 .cabecalho h1 {
     align-items: center;
     text-align: center;
-    
+
     font-family: 'Rubik', sans-serif;
     color: #FFFFFF;
     font-weight: 700;
     font-size: 36px;
     line-height: 43px;
+}
+
+.centralizar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .boxTexto h1 {
@@ -56,11 +59,11 @@
     color: #FFFFFF;
 }
 
-span{
+span {
     color: #7978D9;
 }
 
-p{
+p {
     width: 600px;
     height: 99px;
 
@@ -110,7 +113,7 @@ p{
     font-weight: 500;
     font-size: 28px;
     line-height: 33px;
-    
+
     color: #7978D9;
 }
 
@@ -120,13 +123,14 @@ label {
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
-    
+
     color: #484848;
 }
+
 form {
     display: flex;
     flex-direction: column;
-    
+
     justify-content: center;
 }
 
