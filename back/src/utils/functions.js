@@ -8,6 +8,7 @@ function getArray(req) {
             array = ['email', 'senha'];
             break;
         case '/transacao':
+        case `/transacao/${req.params.id}`:
             array = ['descricao', 'valor', 'data', 'categoria_id', 'tipo'];
         default:
             break;
