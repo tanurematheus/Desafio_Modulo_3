@@ -75,8 +75,51 @@ async function detalharTransacao(req, res) {
     }
 }
 
+async function editarTransacao(req, res) {
+    const { id } = req.params;
+    const { descricao, valor, data, categoria_id, tipo } = req.body;
+    const { id: idUsuario } = req.usuario;
+    try {
+        const queryEditarTransacao = `UPDATE transacoes SET descricao = $1, valor = $2, data = $3, categoria_id = $4, tipo = $5 WHERE id = $6 AND usuario_id = $7`;
+        const { rowCount } = await conexao.query(queryEditarTransacao, [descricao, valor, data, categoria_id, tipo, id, idUsuario]);
+        if (rowCount > 0) {
+            return res.status(200).send();
+        } else {
+            return res.status(400).json({
+                mensagem: 'Erro ao editar transação'
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            erro: error.message
+        });
+    }
+}
+
+async function deletarTransacao(req, res) {
+    const { id } = req.params;
+    const { id: idUsuario } = req.usuario;
+    try {
+        const queryDeletarTransacao = `DELETE FROM transacoes WHERE id = $1 AND usuario_id = $2`;
+        const { rowCount } = await conexao.query(queryDeletarTransacao, [id, idUsuario]);
+        if (rowCount > 0) {
+            return res.status(200).send();
+        } else {
+            return res.status(400).json({
+                mensagem: 'Erro ao deletar transação'
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            erro: error.message
+        });
+    }
+}
+
 module.exports = {
     cadastrarTransacao,
     detalharTransacao,
-    listarTransacoes
+    listarTransacoes,
+    editarTransacao,
+    deletarTransacao
 }
