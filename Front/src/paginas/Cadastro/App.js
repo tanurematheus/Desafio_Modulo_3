@@ -81,7 +81,7 @@ function App() {
             >
               Cadastrar
             </button>
-            <Link to='/Login'>Já tem cadastro? Clique aqui!</Link>
+            <Link to='/'>Já tem cadastro? Clique aqui!</Link>
 
           </form>
 

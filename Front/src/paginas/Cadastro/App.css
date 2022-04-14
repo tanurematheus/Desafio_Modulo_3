@@ -66,7 +66,7 @@
 
 }
 
-h1 { 
+.cadastro h1 { 
     font-weight: 500;
     font-size: 28px;
     line-height: 33px;
@@ -74,7 +74,7 @@ h1 {
     color: #7978D9;
 }
 
-form {
+.cadastro form {
     width: 450px;
 
     margin-top: 42px;
@@ -85,7 +85,7 @@ form {
 
     
 }
-label{
+.cadastro label{
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
@@ -95,7 +95,7 @@ label{
     color: #484848;
 }
 
-input{
+.cadastro input{
     width: 449px;
     height: 63px;
     
@@ -107,7 +107,7 @@ input{
     margin-bottom: 31px;
 }
 
-button {
+.cadastro button {
     position: static;
     width: 449px;
     height: 49px;

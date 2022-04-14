@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './index.css';
 import api from '../../services/api';
 
-
-
 function Login(){
     const navigate = useNavigate()
 
@@ -25,7 +23,7 @@ function Login(){
             });
             console.log(resposta)
 
-        navigate('/dindin')
+        navigate('/cadastro')
         }catch (error){
             console.log(error.message)
             console.log(error.response.data.message)
@@ -64,7 +62,11 @@ function Login(){
                             onChange={(e) => setSenha(e.target.value)}
                         />
 
-                        <button type="submit">Entrar</button>
+                        <button 
+                        type="submit"
+                        onClick={(e) => entrar(e.target.value)}
+                        >Entrar
+                        </button>
                     </form>
                 </div>
             </div>

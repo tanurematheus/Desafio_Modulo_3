@@ -59,11 +59,11 @@
     color: #FFFFFF;
 }
 
-span {
+.boxTexto span {
     color: #7978D9;
 }
 
-p {
+.boxTexto p {
     width: 600px;
     height: 99px;
 
@@ -117,7 +117,7 @@ p {
     color: #7978D9;
 }
 
-label {
+.boxLogin label {
     margin-bottom: 8px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -127,14 +127,14 @@ label {
     color: #484848;
 }
 
-form {
+.boxLogin form {
     display: flex;
     flex-direction: column;
 
     justify-content: center;
 }
 
-input {
+.boxLogin input {
     width: 449px;
     height: 63px;
 
