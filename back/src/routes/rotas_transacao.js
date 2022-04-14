@@ -1,16 +1,19 @@
 const express = require('express');
-const { cadastrarTransacao, detalharTransacao, listarTransacoes, editarTransacao, deletarTransacao } = require('../controller/transacao');
+const { cadastrarTransacao, detalharTransacao, listarTransacoes, editarTransacao, deletarTransacao, obterExtrato } = require('../controller/transacao');
 const { validateLogin, validateBody, validateCategoria } = require('../middleware/middleware');
 
 const rotas_transacao = express();
 
-rotas_transacao.post('/transacao', validateLogin, validateBody, validateCategoria, cadastrarTransacao);
+rotas_transacao.use(validateLogin);
 
-rotas_transacao.get('/transacao', validateLogin, listarTransacoes);
-rotas_transacao.get('/transacao/:id', validateLogin, detalharTransacao);
+rotas_transacao.post('/transacao', validateBody, validateCategoria, cadastrarTransacao);
 
-rotas_transacao.put('/transacao/:id', validateLogin, validateBody, validateCategoria, editarTransacao);
+rotas_transacao.get('/transacao', listarTransacoes);
+rotas_transacao.get('/transacao/extrato', obterExtrato);
+rotas_transacao.get('/transacao/:id', detalharTransacao);
 
-rotas_transacao.delete('/transacao/:id', validateLogin, deletarTransacao);
+rotas_transacao.put('/transacao/:id', validateBody, validateCategoria, editarTransacao);
+
+rotas_transacao.delete('/transacao/:id', deletarTransacao);
 
 module.exports = rotas_transacao;

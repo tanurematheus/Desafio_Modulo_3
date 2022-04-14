@@ -4,9 +4,11 @@ const { validateBody, validateEmail, validateLogin, validateEmailAtualizar } = r
 
 const rotas_usuario = express();
 
-rotas_usuario.get('/usuario', validateLogin, detalharUsuario);
-rotas_usuario.put('/usuario', validateBody, validateLogin, validateEmailAtualizar, atualizarUsuario);
-
 rotas_usuario.post('/usuario', validateBody, validateEmail, cadastrarUsuario);
+
+rotas_usuario.use(validateLogin);
+rotas_usuario.get('/usuario', detalharUsuario);
+rotas_usuario.put('/usuario', validateBody, validateEmailAtualizar, atualizarUsuario);
+
 
 module.exports = rotas_usuario;

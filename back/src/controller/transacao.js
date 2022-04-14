@@ -116,10 +116,38 @@ async function deletarTransacao(req, res) {
     }
 }
 
+async function obterExtrato(req, res) {
+    const { id: idUsuario } = req.usuario;
+    try {
+        const queryObterExtratoEntrada = `SELECT SUM(transacoes.valor) as valor_entrada FROM transacoes WHERE transacoes.tipo = 'entrada' AND transacoes.usuario_id = $1`;
+        const { rows: extratoEntrada } = await conexao.query(queryObterExtratoEntrada, [idUsuario]);
+        const queryObterExtratoSaida = `SELECT SUM(transacoes.valor) as valor_saida FROM transacoes WHERE transacoes.tipo = 'saida' AND transacoes.usuario_id = $1`;
+        const { rows: extratoSaida } = await conexao.query(queryObterExtratoSaida, [idUsuario]);
+        if (extratoEntrada.length > 0 && extratoSaida.length > 0) {
+            return res.status(200).json(
+                {
+                    entrada: extratoEntrada[0].valor_entrada ? Number(extratoEntrada[0].valor_entrada) : 0,
+                    saida: extratoSaida[0].valor_saida ? Number(extratoSaida[0].valor_saida) : 0
+                }
+            );
+        } else {
+            return res.status(200).json(
+                []
+            );
+        }
+    } catch (error) {
+        return res.status(500).json({
+            erro: error.message
+        });
+    }
+
+}
+
 module.exports = {
     cadastrarTransacao,
     detalharTransacao,
     listarTransacoes,
     editarTransacao,
-    deletarTransacao
+    deletarTransacao,
+    obterExtrato
 }
