@@ -3,17 +3,17 @@ import fechar from '../../assets/fechar.svg';
 import './index.css'
 
 
-function Modal({ fecharModal }) {
+function Perfil({ fecharPerfil }) {
     return (
         <>
 
-            <div className='adicionarRegistro'>
+            <div className='editandoPerfil'>
                 <div className='centralizarModal'>
                     <div className='inicioModal'>
                         <h1>Editar Perfil</h1>
                         <img
                             src={fechar}
-                            onClick={() => fecharModal()}
+                            onClick={() => fecharPerfil()}
                         />
                     </div>
                     
@@ -38,10 +38,10 @@ function Modal({ fecharModal }) {
                     </div>
                 </div>
             </div>
-
+        
         </>
     )
 
 }
 
-export default Modal;
+export default Perfil;

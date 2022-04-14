@@ -53,19 +53,34 @@
 }
 
 .botaoModal{
-    width: 340px;
+    width: 489px;
     height: 56px;
 
     display: flex;
 }
 
 .botaoModal button{
+    width: 200px;
+    height: 40px;
+
     background: #B9B9B9;
+    border-radius: 5px;
+    border-style: none;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 17px;
+    
+    color: #FFFFFF;
 }
+
+
 
 .formulario form {
     display: flex;
     flex-direction: column;
+    
 }
 
 .formulario label {
@@ -103,6 +118,22 @@
 }
 
 .formulario button{
-    margin-top: 1000px;
+    width: 236px;
+    height: 42px;
+
+    margin-top: 90px;
+
+    justify-self:center;
+    
+    background: #7978D9;
+    border-radius: 5px;
+    border-style: none;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 17px;
+    color: #FFFFFF;
+
 }
 

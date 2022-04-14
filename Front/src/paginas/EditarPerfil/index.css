@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
-.adicionarRegistro {
+.editandoPerfil {
     position: fixed;
     top: 0;
     left: 0;
@@ -103,5 +103,5 @@
 }
 
 .formulario button {
-    margin-top: 1000px;
+    margin-top: 20px;
 }

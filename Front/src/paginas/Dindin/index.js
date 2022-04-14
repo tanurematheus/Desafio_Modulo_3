@@ -11,6 +11,7 @@ import logo from '../../assets/logo.svg'
 function TelaPrincipal(){
 
     const [abrirModal, setAbrirModal] = useState(false);
+    const [abrirPerfil, setAbrirPerfil] = useState(false)
     
     const entrada = 1000;
     const saida = 500;
@@ -18,10 +19,16 @@ function TelaPrincipal(){
 
     function adicionandoRegistros(){
         setAbrirModal(true)
-        console.log("função")
     }
     function fecharModal(){
         setAbrirModal(false)
+    }
+
+    function editorPerfil(){
+        setAbrirPerfil(true)
+    }
+    function fecharPerfil(){
+        setAbrirPerfil(false)
     }
 
     return(
@@ -35,15 +42,16 @@ function TelaPrincipal(){
                     <img 
                     className='fotoUsuario' 
                     src={usuario}
-                    onClick={() => adicionandoRegistros()}
+                    onClick={() => editorPerfil()}
                     />
-                    {abrirModal && <Perfil
-                        fecharModal={fecharModal}
-
-                    />}
                     <span>Nome</span>
                     <img src={sair}/>
                 </div>
+
+                {abrirPerfil && <Perfil
+                    fecharPerfil={fecharPerfil}
+
+                />}
 
             </div>
 

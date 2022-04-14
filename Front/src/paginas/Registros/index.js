@@ -19,8 +19,8 @@ function Modal({ fecharModal }) {
 
                     </div>
                     <div className='botaoModal'>
-                        <button>Entrada</button>
-                        <button>Saída</button>
+                        <button className='modalEntradas'>Entrada</button>
+                        <button className='modalSaidas'>Saída</button>
                     </div>
                     <div className='formulario'>
                         <form>
@@ -46,7 +46,7 @@ function Modal({ fecharModal }) {
                             <label>Descrição</label>
                             <input type="text" />
 
-                            <button >Confirmar</button>
+                            <button>Confirmar</button>
                         </form>
                     </div>
                 </div>
