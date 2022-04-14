@@ -100,7 +100,9 @@ async function validateLogin(req, res, next) {
         req.usuario = usuario;
         next();
     } catch (error) {
-        return res.status(401).json(error.mensagem);
+        return res.status(401).json({
+            mensagem: "Para acessar este recurso um token de autenticação válido deve ser enviado."
+        });
     }
 }
 

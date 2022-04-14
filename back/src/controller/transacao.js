@@ -60,7 +60,7 @@ async function detalharTransacao(req, res) {
                 );
             } else {
                 return res.status(403).json({
-                    mensagem: 'Você não tem permissão para acessar essa transação'
+                    mensagem: 'Transação não encontrada'
                 });
             }
         } else {
@@ -106,7 +106,7 @@ async function deletarTransacao(req, res) {
             return res.status(200).send();
         } else {
             return res.status(400).json({
-                mensagem: 'Erro ao deletar transação'
+                mensagem: 'Transação não encontrada.'
             });
         }
     } catch (error) {
