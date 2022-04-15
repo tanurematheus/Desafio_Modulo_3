@@ -1,14 +1,21 @@
-import { useState, React } from 'react';
+import { useEffect, useState, React } from 'react';
 import logo from '../../assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 import api from '../../services/api';
+import {definirItem, obterItem} from '../../utils/storage'
 
 function Login(){
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    useEffect(() => {
+        const token = obterItem('token');
+        if (token){
+            navigate('/home')
+        }
+    }, [])
 
     async function entrar(e){
         e.preventDefault();
@@ -21,9 +28,11 @@ function Login(){
             const resposta = await api.post('/login', {
                 email, senha
             });
-            console.log(resposta)
+            const {token, usuario} = resposta.data;
+            definirItem('token', token);
+            definirItem('usuarioId', usuario.id);
 
-        navigate('/cadastro')
+
         }catch (error){
             console.log(error.message)
             console.log(error.response.data.message)
@@ -47,7 +56,7 @@ function Login(){
                 </div>
                 <div className='boxLogin'>
                     <h2>Login</h2>
-                    <form>
+                    <form onSubmit={entrar}>
                         <label>E-mail</label>
                         <input
                             type="email"

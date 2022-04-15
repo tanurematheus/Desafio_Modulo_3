@@ -63,7 +63,7 @@
     width: 200px;
     height: 40px;
 
-    background: #B9B9B9;
+    /* background: #B9B9B9; */
     border-radius: 5px;
     border-style: none;
 
@@ -120,8 +120,10 @@
 .formulario button{
     width: 236px;
     height: 42px;
-
-    margin-top: 90px;
+    
+    position: absolute;
+    top:600px;
+    left: 640px;
 
     justify-self:center;
     
@@ -135,5 +137,13 @@
     line-height: 17px;
     color: #FFFFFF;
 
+}
+
+.saidaAtiva {
+    background-color: #ff576b;
+}
+
+.entradaAtiva {
+    background-color: rgba(58, 159, 241, 1);
 }
 

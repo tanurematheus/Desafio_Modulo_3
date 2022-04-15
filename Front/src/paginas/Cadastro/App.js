@@ -17,7 +17,7 @@ function App() {
 
    try{
      if (!nome || !email || !senha || !confirmarSenha) {
-       console.log("funcionaaa!")
+       
        return;
      }
 

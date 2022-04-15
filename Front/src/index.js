@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Cadastro from './paginas/Cadastro/App'
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
 import Login from './paginas/Login';
 import Home from './paginas/Dindin';
+import Cadastro from './paginas/Cadastro/App'
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
+
+import { obterItem } from './utils/storage'
+
+function rotasProtegidas({redirecionarPara}){
+    const autenticado = obterItem('token');
+
+    return autenticado ? <Outlet/> : <Navigate to={redirecionarPara}/>
+}
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>

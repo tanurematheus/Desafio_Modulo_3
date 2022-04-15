@@ -1,6 +1,7 @@
 import { useState, React } from 'react';
-import Modal from '../Registros'
-import Perfil from '../EditarPerfil'
+import AdicionarAcao from '../Modal/AdicionarRegistros';
+import Perfil from '../Modal/EditarPerfil';
+import Filtrar from '../Filtro'
 import './index.css';
 import usuario from '../../assets/usuario.svg';
 import sair from '../../assets/sair.svg';
@@ -11,11 +12,12 @@ import logo from '../../assets/logo.svg'
 function TelaPrincipal(){
 
     const [abrirModal, setAbrirModal] = useState(false);
-    const [abrirPerfil, setAbrirPerfil] = useState(false)
+    const [abrirPerfil, setAbrirPerfil] = useState(false);
+    const [abrirFiltro, setAbrirFiltrar] = useState(false)
     
-    const entrada = 1000;
-    const saida = 500;
-    const saldo = 500;
+    const entrada = "1000,00";
+    const saida = "500,00";
+    const saldo = "500,00";
 
     function adicionandoRegistros(){
         setAbrirModal(true)
@@ -29,6 +31,10 @@ function TelaPrincipal(){
     }
     function fecharPerfil(){
         setAbrirPerfil(false)
+    }
+
+    function filtrando(){
+        setAbrirFiltrar(!abrirFiltro)
     }
 
     return(
@@ -56,20 +62,37 @@ function TelaPrincipal(){
             </div>
 
             <div className='parteBranca'>
-                <button className='filtrar'>
-                    <img src={filtro}/>
-                    <span>Filtro</span>
+                <button className='filtrar' onClick={() => filtrando()}>
+                    <img 
+                        src={filtro}
+                        />
+                    <span>Filtrar</span>
                 </button>
-                <div className='dados'>
-                    <div className='extrato'>
+                <div className='conteudo'>
 
+                <div>
+
+
+                {abrirFiltro && <Filtrar/>}
+
+                    <div className='extrato'>
+                        <span>Data</span>
+                        <span>Dia da semana</span>
+                        <span>Descrição</span>
+                        <span>Categoria</span>
+                        <span>Valor</span>
                     </div>
+                </div>
+                <div className='dados'>
                     <div className='grupoResumo'>
                         <div className='resumo'>
                             <h2>Resumo</h2>
-                            <p>Entradas <span>{entrada}</span></p>
-                            <p>Saídas <span>{saida}</span></p>
-                            <p>Saldo <span>{saldo}</span></p>
+                            <div className='movimentacao'>
+                                <p>Entradas <span className='movimentacaoEntrada'>R$ {entrada}</span></p>
+                                    <p>Saídas <span className='movimentacaoSaida'>R$ {saida}</span></p>
+                            </div>
+                            <div className='borda'></div>
+                            <p className='saldo'>Saldo <span>R$ {saldo}</span></p>
                         </div>
                         <button
                             onClick={() => adicionandoRegistros()}
@@ -77,12 +100,14 @@ function TelaPrincipal(){
                             Adicionar Registro
                         </button>
                     </div>
-                        {abrirModal && <Modal
+                        {abrirModal && <AdicionarAcao
                             fecharModal={fecharModal}
                             
                         />}
                 </div>
+                </div>
             </div>
+
          </div>
     )
 }

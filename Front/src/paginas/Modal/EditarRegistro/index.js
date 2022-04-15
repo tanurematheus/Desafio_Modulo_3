@@ -1,5 +1,5 @@
 import { useState, React } from 'react';
-import fechar from '../../assets/fechar.svg';
+import fechar from '../../../assets/fechar.svg';
 import './index.css'
 
 
@@ -10,7 +10,7 @@ function Modal({ fecharModal }) {
             <div className='adicionarRegistro'>
                 <div className='centralizarModal'>
                     <div className='inicioModal'>
-                        <h1>Adicionar Registro</h1>
+                        <h1>Editar Registro</h1>
 
                         <img
                             src={fechar}
@@ -19,8 +19,8 @@ function Modal({ fecharModal }) {
 
                     </div>
                     <div className='botaoModal'>
-                        <button className='modalEntradas'>Entrada</button>
-                        <button className='modalSaidas'>Saída</button>
+                        <button>Entrada</button>
+                        <button>Saída</button>
                     </div>
                     <div className='formulario'>
                         <form>
@@ -46,7 +46,7 @@ function Modal({ fecharModal }) {
                             <label>Descrição</label>
                             <input type="text" />
 
-                            <button>Confirmar</button>
+                            <button >Confirmar</button>
                         </form>
                     </div>
                 </div>

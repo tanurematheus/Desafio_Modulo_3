@@ -17,11 +17,10 @@
     background-size: cover;
 }
 
-.cabecalho {
-    width: 169px;
-    height: 45px;
+.paginaInicial .cabecalho {
+    width: 150px;
+    height: 40px;
 
-    margin-top: 41px;
     margin-left: 100px;
 
     display: flex;
@@ -30,14 +29,14 @@
 
 }
 
-.cabecalho h1 {
+.paginaInicial .cabecalho h1 {
     align-items: center;
     text-align: center;
 
     font-family: 'Rubik', sans-serif;
     color: #FFFFFF;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 31px;
     line-height: 43px;
 }
 
@@ -49,11 +48,11 @@
 
 .boxTexto h1 {
     height: 124px;
-    width: 614px;
+    width: 600px;
 
     font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 52px;
+    font-size: 43px;
     line-height: 62px;
 
     color: #FFFFFF;
@@ -64,15 +63,15 @@
 }
 
 .boxTexto p {
-    width: 600px;
+    width: 540px;
     height: 99px;
 
     margin-top: 33px;
 
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 33px;
+    font-size: 25px;
+    line-height: 30px;
 
     color: #FFFFFF;
 }
@@ -87,14 +86,16 @@
     font-size: 14px;
     line-height: 17px;
     background-color: rgba(121, 120, 217, 1);
+
     color: #FFFFFF;
 
     border-radius: 5px;
+    border-style: none;
 }
 
 .boxLogin {
-    width: 513px;
-    height: 535px;
+    width: 490px;
+    height: 508px;
 
     margin-left: 91px;
 
@@ -107,7 +108,6 @@
 }
 
 .boxLogin h2 {
-    /* margin-top: 62px; */
     margin-top: 60px;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
@@ -121,7 +121,7 @@
     margin-bottom: 8px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 21px;
 
     color: #484848;
@@ -135,16 +135,16 @@
 }
 
 .boxLogin input {
-    width: 449px;
-    height: 63px;
+    width: 425px;
+    height: 52px;
 
     margin-bottom: 31px;
     padding-left: 10px;
 }
 
 .boxLogin form button {
-    width: 449px;
-    height: 48px;
+    width: 440px;
+    height: 44px;
 
     margin-top: 42px;
     margin-bottom: 53px;
@@ -159,7 +159,7 @@
 
     border-radius: 5px;
 
-    text-decoration: none;
+    border-style: none;
 
 
 }

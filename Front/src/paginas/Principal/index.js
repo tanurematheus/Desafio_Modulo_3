@@ -1,6 +1,3 @@
-import { useState, React } from 'react';
-
-import './index.css';
 import Cadastro from '../Cadastro'
 import Login from '../Login';
 
