@@ -44,7 +44,7 @@
     font-weight: 700;
     font-size: 34px;
     line-height: 43px;
-    
+
     color: #FFFFFF;
 }
 
@@ -59,7 +59,7 @@
     justify-content: space-between;
 }
 
-.fotoUsuario{
+.fotoUsuario {
     height: 50px;
     width: 50px;
 }
@@ -85,7 +85,7 @@
     border-top-left-radius: 60px;
 }
 
-.conteudo{
+.conteudo {
     display: flex;
     margin-top: 32px;
 }
@@ -132,21 +132,21 @@
     display: flex;
     flex-wrap: wrap;
     gap: 130px;
- 
+
     background: #FAFAFA;
     box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 
 }
 
-.extrato span{
+.extrato span {
     margin-top: 21px;
-    
+
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     font-size: 14px;
-    line-height: 17px; 
-    
+    line-height: 17px;
+
     color: #000000;
 
 
@@ -184,7 +184,8 @@
 
     color: #2F2F2F;
 }
-.movimentacao{
+
+.movimentacao {
     margin-top: 12px;
     margin-bottom: 12px;
 }
@@ -204,18 +205,19 @@
     color: #2F2F2F;
 }
 
-.movimentacaoEntrada{
+.movimentacaoEntrada {
     color: rgba(100, 95, 251, 1);
 }
 
-.movimentacaoSaida{
+.movimentacaoSaida {
     color: #FA8C10;
 }
-.borda{
+
+.borda {
     border: 1px solid #EAEAEA;
 }
 
-.saldo{
+.saldo {
     margin-top: 20px;
 
     display: flex;
@@ -225,10 +227,10 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 17px;
-    
+
 }
 
-.saldo span{
+.saldo span {
     color: rgba(58, 159, 241, 1);
 }
 
@@ -250,4 +252,18 @@
     line-height: 17px;
 
     align-self: center;
+}
+
+.btn {
+    all: unset;
+    cursor: pointer;
+}
+
+
+.usuario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
 }

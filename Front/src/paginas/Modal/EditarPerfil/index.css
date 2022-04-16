@@ -15,6 +15,7 @@
 }
 
 .centralizarPerfil {
+    position: relative;
     width: 430px;
     height: 550px;
 
@@ -111,15 +112,15 @@
     height: 42px;
 
     position: absolute;
-    top:562px;
-    left: 640px;
+    bottom: 30px;
+    left: 100px;
 
     background: #7978D9;
     border-radius: 5px;
     border-style: none;
-    
+
     font-family: 'Rubik',
-    sans-serif;
+        sans-serif;
     font-weight: 700;
     font-size: 12px;
     line-height: 17px;

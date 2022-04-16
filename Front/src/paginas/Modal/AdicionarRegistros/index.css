@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
-.adicionarRegistro{
+.adicionarRegistro {
     position: fixed;
     top: 0;
     left: 0;
@@ -15,6 +15,7 @@
 }
 
 .centralizarModal {
+    position: relative;
     width: 451px;
     height: 650px;
 
@@ -27,7 +28,7 @@
 
 }
 
-.inicioModal{
+.inicioModal {
     width: 330px;
 
     margin-top: 40px;
@@ -38,28 +39,28 @@
     justify-content: space-between;
 }
 
-.inicioModal h1{
+.inicioModal h1 {
     font-family: 'Rubik', sans-serif;
     font-weight: 700;
     font-size: 25px;
     line-height: 43px;
-    
+
     color: #000000;
 }
 
-.inicioModal img{
+.inicioModal img {
     width: 26.58px;
     height: 26.38px;
 }
 
-.botaoModal{
+.botaoModal {
     width: 489px;
     height: 56px;
 
     display: flex;
 }
 
-.botaoModal button{
+.botaoModal button {
     width: 200px;
     height: 40px;
 
@@ -71,7 +72,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 17px;
-    
+
     color: #FFFFFF;
 }
 
@@ -80,7 +81,7 @@
 .formulario form {
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .formulario label {
@@ -91,7 +92,7 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 28px;
-    
+
     color: #484848;
 
 }
@@ -117,16 +118,16 @@
     border-radius: 5px;
 }
 
-.formulario button{
+.formulario button {
     width: 236px;
     height: 42px;
-    
-    position: absolute;
-    top:600px;
-    left: 640px;
 
-    justify-self:center;
-    
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+
+    justify-self: center;
+
     background: #7978D9;
     border-radius: 5px;
     border-style: none;
@@ -146,4 +147,3 @@
 .entradaAtiva {
     background-color: rgba(58, 159, 241, 1);
 }
-
