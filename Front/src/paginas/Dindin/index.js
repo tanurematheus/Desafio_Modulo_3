@@ -105,7 +105,7 @@ function TelaPrincipal() {
                     <div>
 
 
-                        {abrirFiltro && <Filtrar />}
+                        {abrirFiltro && <Filtrar token={usuarioToken} />}
 
                         <div className='extrato'>
                             <span>Data</span>

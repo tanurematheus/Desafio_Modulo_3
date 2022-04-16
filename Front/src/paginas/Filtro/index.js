@@ -2,10 +2,13 @@ import { useState, React } from 'react';
 import mais from '../../assets/mais.svg';
 import fecharFiltro from '../../assets/fecharFiltro.svg'
 import './index.css'
+import api from '../../services/api';
+import { useEffect } from 'react';
 
 
-function Filtrar() {
+function Filtrar({ token }) {
     const [filtroAtivo, setFiltroAtivo] = useState([]);
+    const [categorias, setCategorias] = useState([]);
     const arrayBotoes = [
         "Contas",
         "Depósito",
@@ -17,10 +20,23 @@ function Filtrar() {
         "Pix",
     ]
 
-    function toggleFiltro(filtro){
+    useEffect(() => {
+        buscarCategorias();
+    }, []);
+
+    async function buscarCategorias() {
+        const response = await api.get('/categoria', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        setCategorias(response.data);
+    }
+
+    function toggleFiltro(filtro) {
         if (filtroAtivo.includes(filtro)) {
             setFiltroAtivo([...filtroAtivo.filter(item => item !== filtro)])
-        } else{
+        } else {
             setFiltroAtivo([...filtroAtivo, filtro])
         }
     }
@@ -30,9 +46,16 @@ function Filtrar() {
             <div className='centralizarCatgorias'>
                 <h2>Categoria</h2>
                 <div className='categorias'>
-                    {arrayBotoes.map(botao => {
-                        return <button className={filtroAtivo.includes(botao) ? 'filtroSelecionado' : ''} onClick={() => toggleFiltro(botao)} key={botao}>{botao}<img src={filtroAtivo.includes(botao) ? fecharFiltro : mais}/></button>
-                    })}
+                    {
+                        categorias.map(categoria => (
+                            <div key={categoria.id} className={filtroAtivo.includes(categoria.descricao) ? 'filtroSelecionado' : ''}>
+                                <button onClick={() => toggleFiltro(categoria.descricao)}>
+                                    {categoria.descricao}
+                                    <img src={filtroAtivo.includes(categoria.descricao) ? fecharFiltro : mais} />
+                                </button>
+                            </div>
+                        ))
+                    }
                 </div>
                 <div className='limparAplicar'>
                     <button className='limpar' onClick={() => setFiltroAtivo([])}>Limpar Filtros</button>
