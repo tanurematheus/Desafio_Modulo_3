@@ -3,44 +3,32 @@ import logo from '../../assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 import api from '../../services/api';
-import {definirItem, obterItem} from '../../utils/storage'
+import { definirItem, obterItem } from '../../utils/storage.js';
 
-function Login(){
+function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
     useEffect(() => {
         const token = obterItem('token');
-        if (token){
+        if (token) {
             navigate('/home')
         }
-    }, [])
+    }, []);
 
-    async function entrar(e){
+    async function Login(e) {
         e.preventDefault();
-
-        try {
-            if (!email || !senha) {
-                return;
-            }
-
-            const resposta = await api.post('/login', {
-                email, senha
-            });
-            const {token, usuario} = resposta.data;
-            definirItem('token', token);
-            definirItem('usuarioId', usuario.id);
-
-
-        }catch (error){
-            console.log(error.message)
-            console.log(error.response.data.message)
+        if (email === '' || senha === '') {
+            alert('Preencha todos os campos');
+            return;
         }
+        const response = await api.post('/login', { email, senha });
+        definirItem('token', response.data.token);
+        navigate('/home');
     }
 
-
-    return(
+    return (
         <div className='paginaInicial'>
             <div className='cabecalho'>
                 <img src={logo} />
@@ -56,7 +44,7 @@ function Login(){
                 </div>
                 <div className='boxLogin'>
                     <h2>Login</h2>
-                    <form onSubmit={entrar}>
+                    <form onSubmit={Login}>
                         <label>E-mail</label>
                         <input
                             type="email"
@@ -71,9 +59,8 @@ function Login(){
                             onChange={(e) => setSenha(e.target.value)}
                         />
 
-                        <button 
-                        type="submit"
-                        onClick={(e) => entrar(e.target.value)}
+                        <button
+                            type="submit"
                         >Entrar
                         </button>
                     </form>

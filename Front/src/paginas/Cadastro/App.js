@@ -1,56 +1,54 @@
 import { useState, React } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './App.css';
 import logo from '../../assets/logo.svg';
 import api from '../../services/api'
 
 
 function App() {
+  const navigate = useNavigate();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('')
-  const [error, setError] = useState('')
+  const [confirmarSenha, setConfirmarSenha] = useState('');
 
-  async function submeterFormulario(evento){
-    evento.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (senha !== confirmarSenha) {
+      alert('Senhas não conferem');
+      return;
+    }
+    try {
+      const response = await api.post('/usuario', {
+        nome,
+        email,
+        senha
+      });
 
-   try{
-     if (!nome || !email || !senha || !confirmarSenha) {
-       
-       return;
-     }
-
-     if (senha != confirmarSenha){
-       return;
-     }
-    const resposta = await api.post('usuario', {
-      nome, email, senha, confirmarSenha
-    });
-
-    console.log(resposta);
-
-   }catch(error){
-    console.log(error)
-   }
+      alert(`Seu usuário foi criado com sucesso!`);
+      navigate('/');
+    } catch (error) {
+      alert(error.response.data.mensagem);
+    }
   }
 
   return (
     <div className="telaInicial">
       <div className='logotipo'>
-      <img src={logo}/>
-      <h2>Dindin</h2>
+        <img src={logo} />
+        <h2>Dindin</h2>
 
       </div>
-       <div className='centralizar'>
+      <div className='centralizar'>
         <div className="cadastro">
           <h1>Cadastre-se</h1>
-          <form onSubmit={submeterFormulario}>
+          <form onSubmit={handleSubmit}>
 
             <label>Nome</label>
             <input
               type="text"
               value={nome}
+              required
               onChange={(e) => setNome(e.target.value)}
             />
 
@@ -58,6 +56,7 @@ function App() {
             <input
               type="email"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -65,6 +64,7 @@ function App() {
             <input
               type="password"
               value={senha}
+              required
               onChange={(e) => setSenha(e.target.value)}
             />
 
@@ -72,12 +72,12 @@ function App() {
             <input
               type="password"
               value={confirmarSenha}
+              required
               onChange={(e) => setConfirmarSenha(e.target.value)}
             />
 
             <button
               type="submit"
-              onClick={(e) => submeterFormulario(e)}
             >
               Cadastrar
             </button>
@@ -86,7 +86,7 @@ function App() {
           </form>
 
         </div>
-       </div>
+      </div>
     </div>
   );
 }
