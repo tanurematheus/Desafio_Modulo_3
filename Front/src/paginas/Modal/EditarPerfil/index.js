@@ -2,44 +2,36 @@ import { useState, React } from 'react';
 import fechar from '../../../assets/fechar.svg';
 import api from '../../../services/api';
 import './index.css'
-import {obterItem} from '../../../utils/storage'
-import { rotasProtegidas} from '../../../index'
 
 
-function Perfil({ fecharPerfil }) {
-    const [atualizar, setAtualizar] = useState(null);
-    const [form, setForm] = useState({ nome: '', email: '', senha: '', confirmacaoSenha: '' });
-    const [atual, setAtual] = useState(null);
+function Perfil({ fecharPerfil, token }) {
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [confirmarSenha, setConfirmarSenha] = useState('');
 
-    async function atualizandoPerfil(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-
-        try{
-            if (!form.nome || form.email || !form.senha || !form.confirmacaoSenha) {
-                return;
-            }
-
-            if (form.senha != form.confirmacaoSenha) {
-                return;
-            }
-            const usuarioId = obterItem('usuarioId')
-            const token = obterItem('token');
-            const resposta = await api.put(`/usuario/${usuarioId}`, 
-            {
-                ...form
-            },
-            {
-                headers:{
-                    rotasProtegidas: `Bearer ${token}`
-                }
-            }
-            )
-        } catch (error) {
-
+        if (senha !== confirmarSenha) {
+            alert('Senhas não conferem');
+            return;
         }
-
-
-
+        try {
+            const response = await api.put(`/usuario`, {
+                nome,
+                email,
+                senha
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            alert(`Seu usuário foi atualizado com sucesso!`);
+            fecharPerfil();
+        }
+        catch (error) {
+            alert(error.response.data.mensagem);
+        }
     }
     return (
         <>
@@ -55,23 +47,40 @@ function Perfil({ fecharPerfil }) {
                     </div>
 
                     <div className='formularioAtualizar'>
-                        <form onSubmit={atualizandoPerfil}>
+                        <form onSubmit={handleSubmit}>
                             <label>Nome</label>
-                            <input />
+                            <input
+                                required
+                                type="text"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                            />
 
                             <label>E-mail</label>
                             <input
                                 type="email"
+                                value={email}
+                                required
+                                onChange={(e) => setEmail(e.target.value)}
                             />
 
                             <label>Senha</label>
-                            <input type="password" />
+                            <input
+                                type="password"
+                                value={senha}
+                                required
+                                onChange={(e) => setSenha(e.target.value)}
+                            />
 
                             <label>Confirmação de senha</label>
-                            <input type="password" />
+                            <input
+                                type="password"
+                                value={confirmarSenha}
+                                required
+                                onChange={(e) => setConfirmarSenha(e.target.value)}
+                            />
 
                             <button type='submit'
-                                onClick={() => setAtualizar()}
                             >Confirmar</button>
                         </form>
                     </div>

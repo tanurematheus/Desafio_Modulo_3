@@ -19,6 +19,7 @@ function TelaPrincipal() {
     const [abrirPerfil, setAbrirPerfil] = useState(false);
     const [abrirFiltro, setAbrirFiltrar] = useState(false);
     const [nome, setNome] = useState('');
+    const [usuarioToken, setUsuarioToken] = useState('');
 
     useEffect(() => {
         buscarUsuario();
@@ -32,6 +33,7 @@ function TelaPrincipal() {
             }
         });
         setNome(response.data.nome);
+        setUsuarioToken(token);
     }
 
     function handleSair() {
@@ -69,11 +71,11 @@ function TelaPrincipal() {
                     <h1>Dindin</h1>
                 </div>
                 <div className='usuario'>
-                    <button className='btn usuario'>
+                    <button className='btn usuario'
+                        onClick={() => editorPerfil()}>
                         <img
                             className='fotoUsuario'
                             src={usuario}
-                            onClick={() => editorPerfil()}
                         />
                         <span>{nome}</span>
                     </button>
@@ -86,6 +88,7 @@ function TelaPrincipal() {
 
                 {abrirPerfil && <Perfil
                     fecharPerfil={fecharPerfil}
+                    token={usuarioToken}
                 />}
 
             </div>

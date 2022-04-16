@@ -15,7 +15,6 @@ async function cadastrarUsuario(req, res) {
         if (usuarioCadastrados.rowCount > 0) {
             const queryUsuario = `SELECT * FROM usuarios WHERE email = $1`;
             const usuario = await conexao.query(queryUsuario, [email]);
-            console.log(usuario.rows[0]);
             return res.status(201).json({
                 id: usuario.rows[0].id,
                 nome: usuario.rows[0].nome,
@@ -85,7 +84,7 @@ async function atualizarUsuario(req, res) {
         }
         return res.status(200).send();
     } catch (error) {
-        return res.status(400).json(error.mensagem);
+        return res.status(400).json({ mensagem: "erro" });
     }
 }
 
