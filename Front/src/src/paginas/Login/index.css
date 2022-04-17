@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.paginaInicial {
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: 41px;
+
+    background-image: url("../../assets/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.paginaInicial .cabecalho {
+    width: 150px;
+    height: 40px;
+
+    margin-left: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.paginaInicial .cabecalho h1 {
+    align-items: center;
+    text-align: center;
+
+    font-family: 'Rubik', sans-serif;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 43px;
+}
+
+.centralizar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxTexto h1 {
+    height: 124px;
+    width: 600px;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 62px;
+
+    color: #FFFFFF;
+}
+
+.boxTexto span {
+    color: #7978D9;
+}
+
+.boxTexto p {
+    width: 540px;
+    height: 99px;
+
+    margin-top: 33px;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+}
+
+.boxTexto button {
+    width: 284px;
+    height: 48px;
+
+    margin-top: 43px;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: rgba(121, 120, 217, 1);
+
+    color: #FFFFFF;
+
+    border-radius: 5px;
+    border-style: none;
+}
+
+.boxLogin {
+    width: 490px;
+    height: 508px;
+
+    margin-left: 91px;
+
+    background-color: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxLogin h2 {
+    margin-top: 60px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+
+    color: #7978D9;
+}
+
+.boxLogin label {
+    margin-bottom: 8px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+
+    color: #484848;
+}
+
+.boxLogin form {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.boxLogin input {
+    width: 425px;
+    height: 52px;
+
+    margin-bottom: 31px;
+    padding-left: 10px;
+}
+
+.boxLogin form button {
+    width: 440px;
+    height: 44px;
+
+    margin-top: 42px;
+    margin-bottom: 53px;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    background-color: rgba(121, 120, 217, 1);
+    color: #FFFFFF;
+
+    border-radius: 5px;
+
+    border-style: none;
+
+
+}

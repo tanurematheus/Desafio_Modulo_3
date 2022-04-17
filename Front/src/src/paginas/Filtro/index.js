@@ -9,6 +9,16 @@ import { useEffect } from 'react';
 function Filtrar({ token }) {
     const [filtroAtivo, setFiltroAtivo] = useState([]);
     const [categorias, setCategorias] = useState([]);
+    const arrayBotoes = [
+        "Contas",
+        "Depósito",
+        "Lazer",
+        "Mercado",
+        "TED",
+        "Compras",
+        "Farmácia",
+        "Pix",
+    ]
 
     useEffect(() => {
         buscarCategorias();

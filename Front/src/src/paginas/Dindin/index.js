@@ -18,19 +18,15 @@ function TelaPrincipal() {
     const [abrirModal, setAbrirModal] = useState(false);
     const [abrirPerfil, setAbrirPerfil] = useState(false);
     const [abrirFiltro, setAbrirFiltrar] = useState(false);
-    const [entrada, setEntrada] = useState(0);
-    const [saida, setSaida] = useState(0);
-    const [saldo, setSaldo] = useState(0);
     const [nome, setNome] = useState('');
     const [usuarioToken, setUsuarioToken] = useState('');
 
     useEffect(() => {
         buscarUsuario();
-        handlerSaldo();
     }, []);
 
     async function buscarUsuario() {
-        const token = obterItem('token');
+        const token = await obterItem('token');
         const response = await api.get('/usuario', {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -45,18 +41,9 @@ function TelaPrincipal() {
         navigate('/');
     }
 
-    async function handlerSaldo() {
-        const token = obterItem('token');
-        const response = await api.get('/transacao/extrato', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-
-        setEntrada((response.data.entrada / 100).toFixed(2));
-        setSaida((response.data.saida / 100).toFixed(2));
-        setSaldo(((response.data.entrada - response.data.saida) / 100).toFixed(2));
-    }
+    const entrada = "1000,00";
+    const saida = "500,00";
+    const saldo = "500,00";
 
     function adicionandoRegistros() {
         setAbrirModal(true)
@@ -114,7 +101,10 @@ function TelaPrincipal() {
                     <span>Filtrar</span>
                 </button>
                 <div className='conteudo'>
+
                     <div>
+
+
                         {abrirFiltro && <Filtrar token={usuarioToken} />}
 
                         <div className='listar'>
@@ -126,7 +116,7 @@ function TelaPrincipal() {
                                 <span>Valor</span>
                             </div>
                             <div className='detalhes' >
-
+                                
                             </div>
                         </div>
                     </div>
